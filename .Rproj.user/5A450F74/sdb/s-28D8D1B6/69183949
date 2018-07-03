@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "setwd(\"/Users/youse/Desktop/Churn\")\nload(\"FrequenciaCCnoTempo.RData\")\nlibrary(zoo)\nlibrary(tidyverse)\nlibrary(ggthemes)\nload(\"ApolicesAuto.RData\")\nCohortPercent(\"Inadimplência\")\n",
+    "created" : 1530627993913.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2299299119",
+    "id" : "69183949",
+    "lastKnownWriteTime" : -646476534927727872,
+    "last_content_update" : 1530628206434,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

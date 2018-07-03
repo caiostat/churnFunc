@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @title Functions to help reporting churn\n#'\n#' @description They let knitr script looks cleaner\n#'\n#' @param symbol\n#'\n#' @return NULL\n#'\n#' @examples\n#'\n#' @export CohortPercent\n\nCohortPercent <- function(c){\n  x <- ApolicesAuto[ApolicesAuto$MotivoCancelamento != c,] %>% mutate(MesCriacao = as.yearmon(DataCriacao)) %>%\n    group_by(MesCriacao,CS,CoreChurn) %>% dplyr::summarise(n=n()) %>% group_by(MesCriacao,CS) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))\n  ggplot(x %>% filter(MesCriacao>\"Dec 2016\"),aes(y=Percentual, x=MesCriacao, fill = CoreChurn)) + geom_col() + facet_grid(CS~.) +\n    theme_few() +  theme(legend.position = \"bottom\") +\n    geom_text(data = x %>% filter(MesCriacao>\"Dec 2016\",CoreChurn != \"Não Core\"),aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) + labs(title = paste(c))\n}\n",
+    "created" : 1530627749592.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2318099398",
+    "id" : "C6BE8E22",
+    "lastKnownWriteTime" : 1530627973,
+    "last_content_update" : 1530627973651,
+    "path" : "~/Desktop/Dados Analise/churnFunc/R/CohortPercent.R",
+    "project_path" : "R/CohortPercent.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

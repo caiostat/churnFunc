@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "export(CohortPercent)\n",
+    "created" : 1530627976938.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3223888498",
+    "id" : "8F1089A0",
+    "lastKnownWriteTime" : 1530627876,
+    "last_content_update" : 1530627876,
+    "path" : "~/Desktop/Dados Analise/churnFunc/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_namespace"
+}
