@@ -10,6 +10,10 @@
 #'
 #' @export CohortPercent
 
+library(zoo)
+library(tidyverse)
+library(ggthemes)
+
 CohortPercent <- function(c){
   x <- ApolicesAuto[ApolicesAuto$MotivoCancelamento != c,] %>% mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
     group_by(MesCriacao,CS,CoreChurn) %>% dplyr::summarise(n=n()) %>% group_by(MesCriacao,CS) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
