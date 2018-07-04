@@ -1,1 +1,2 @@
 export(CohortPercent)
+export(TempoVida_Hist)

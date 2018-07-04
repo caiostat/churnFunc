@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "TempoVida_Hist <- function(c){\n  ggplot(ApolicesAuto %>% filter(MesCriacao > \"Dec2016\", !is.na(DataCancelamento), MotivoCancelamento %in% c), aes(x=TempoDeVida, fill=CS)) +\n    geom_histogram(aes(y =..density..),position=\"identity\",  breaks=seq(0, 200, by=10),alpha = .3) +\n    theme_few() + theme(legend.position = \"bottom\") + labs(title = \"Tempo de Vida das Apólices Canceladas\")\n}\n",
+    "created" : 1530734061296.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1009173863",
+    "id" : "3ADB822D",
+    "lastKnownWriteTime" : 1530734119,
+    "last_content_update" : 1530734119437,
+    "path" : "~/Desktop/Dados Analise/churnFunc/R/TempoVida_Hist.R",
+    "project_path" : "R/TempoVida_Hist.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
