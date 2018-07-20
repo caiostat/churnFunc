@@ -1,23 +1,27 @@
 #' @title Functions to help reporting churn
 #'
-#' @description They let knitr script looks cleaner
+#' @description function calculates the churn cohortwise
 #'
-#' @param symbol
+#' @param c
 #'
-#' @return NULL
+#' @return A bar graph describing churn patterns, discriminated by c.
 #'
 #' @examples
 #'
 #' @export CohortPercent
 
-library(zoo)
-library(tidyverse)
-library(ggthemes)
 
-CohortPercent <- function(c){
-  x <- ApolicesAuto[ApolicesAuto$MotivoCancelamento != c,] %>% mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
-    group_by(MesCriacao,CS,CoreChurn) %>% dplyr::summarise(n=n()) %>% group_by(MesCriacao,CS) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
-  ggplot(x %>% filter(MesCriacao>"Dec 2016"),aes(y=Percentual, x=MesCriacao, fill = CoreChurn)) + geom_col() + facet_grid(CS~.) +
-    theme_few() +  theme(legend.position = "bottom") +
-    geom_text(data = x %>% filter(MesCriacao>"Dec 2016",CoreChurn != "Não Core"),aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) + labs(title = paste(c))
+CohortPercent <- function(df, c, var){
+  x <- df %>% filter(MotivoCancelamento %in% c) %>%
+    mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
+    group_by(MesCriacao, var, CoreChurn) %>% dplyr::summarise(n=n()) %>%
+    group_by(MesCriacao, var) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
+
+    ggplot(x, aes(y=Percentual, x=MesCriacao, fill = CoreChurn)) +
+    geom_col() +
+    facet_grid(var~.) +
+    theme_few() +
+    theme(legend.position = "bottom") +
+    geom_text(data = x, aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) +
+    labs(title = paste(c))
 }
