@@ -11,17 +11,17 @@
 #' @export CohortPercent
 
 
-CohortPercent <- function(df, c, var){
-  x <- df %>% filter(MotivoCancelamento %in% c) %>%
-    mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
-    group_by(MesCriacao, var, CoreChurn) %>% dplyr::summarise(n=n()) %>%
-    group_by(MesCriacao, var) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
 
-    ggplot(x, aes(y=Percentual, x=MesCriacao, fill = CoreChurn)) +
+CohortPercent <- function(df, c, var, cols, cols2){
+  x <- ApolicesAuto2 %>% filter(MotivoCancelamento %in% c | is.na(DataCancelamento)) %>%
+    mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
+    group_by(!!!as_quosure(cols)) %>% dplyr::summarise(n=n()) %>%
+    group_by(!!!as_quosure(cols2)) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
+  ggplot(x, aes(y=Percentual, x=MesCriacao, fill = CoreChurn)) +
     geom_col() +
-    facet_grid(var~.) +
+    facet_grid(reformulate(".",var)) +
     theme_few() +
     theme(legend.position = "bottom") +
-    geom_text(data = x, aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) +
+    geom_text(data = x %>% filter(CoreChurn != "Não Core"), aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) +
     labs(title = paste(c))
 }

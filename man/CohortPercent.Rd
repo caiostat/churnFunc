@@ -4,7 +4,7 @@
 \alias{CohortPercent}
 \title{Functions to help reporting churn}
 \usage{
-CohortPercent(df, c, var)
+CohortPercent(df, c, var, cols, cols2)
 }
 \arguments{
 \item{c}{}
