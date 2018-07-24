@@ -8,7 +8,7 @@
 #'
 #' @examples
 #'
-#' @export CohortPercent
+#' @export CohortPercents
 
 CohortPercent <- function(df, c, var, cols, cols2){
   x <- df %>% filter(MotivoCancelamento %in% c | is.na(DataCancelamento)) %>%
