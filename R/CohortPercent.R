@@ -13,7 +13,7 @@
 
 
 CohortPercent <- function(df, c, var, cols, cols2){
-  x <- ApolicesAuto2 %>% filter(MotivoCancelamento %in% c | is.na(DataCancelamento)) %>%
+  x <- df %>% filter(MotivoCancelamento %in% c | is.na(DataCancelamento)) %>%
     mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
     group_by(!!!as_quosure(cols)) %>% dplyr::summarise(n=n()) %>%
     group_by(!!!as_quosure(cols2)) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))
