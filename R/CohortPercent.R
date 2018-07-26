@@ -23,3 +23,5 @@ CohortPercent <- function(df, c, var, cols, cols2){
     geom_text(data = x %>% filter(CoreChurn != "Não Core"), aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) +
     labs(title = paste(c))
 }
+
+
