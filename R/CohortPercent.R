@@ -8,10 +8,11 @@
 #'
 #' @examples
 #'
-#' @export CohortPercents
+#' @export CohortPercent
 
 CohortPercent <- function(df, c, var, cols, cols2){
-  x <- df %>% filter(MotivoCancelamento %in% c | is.na(DataCancelamento)) %>%
+  x <- df %>% mutate(ChurnVoluntario = ifelse(MotivoCancelamento == "Voluntário", 1, 0),
+                     ChurnInadimplencia = ifelse(MotivoCancelamento == "Inadimplência", 1, 0))  %>%
     mutate(MesCriacao = as.yearmon(DataCriacao)) %>%
     group_by(!!!as_quosure(cols)) %>% dplyr::summarise(n=n()) %>%
     group_by(!!!as_quosure(cols2)) %>% mutate(Total = sum(n),Percentual = round((n/Total)*100,1))

@@ -1,5 +1,6 @@
 export(CohortPercent)
 export(CohortPercent2)
+export(CohortPercent3)
 export(TempoVida_Hist)
 export(as_quosure)
 export(completeFun)
