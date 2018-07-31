@@ -8,10 +8,9 @@ CohortPercent3 <- function(df, c, var, cols, cols2){
 
   ggplot(x,aes_string(x = "MesCriacao",y="Percentual",fill=cols[3])) +
     geom_col() +
-    theme_few() +
     facet_grid(reformulate(".",var)) +
     theme(legend.position = "bottom") +
     theme_few() +
-    geom_text(data = y %>% filter(!! sym(cols[3]) == "Sim"), aes(y=Percentual, x=MesCriacao, label= Percentual)) +
+    geom_text(data = x %>% filter(!! sym(cols[3]) == "Sim"), aes(y=Percentual, x=MesCriacao, label= Percentual)) +
     labs(title = paste(c))
 }

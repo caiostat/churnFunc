@@ -8,7 +8,6 @@ CohortPercent2 <- function(df, c, var, cols, cols2){
     geom_col() +
     facet_grid(reformulate(".",var)) +
     theme_few() +
-    theme_few() +
     theme(legend.position = "bottom") +
     geom_text(data = x %>% filter(!! sym(cols[3]) != "Não"), aes(y=100 - Percentual, x=MesCriacao, label= Percentual)) +
     labs(title = paste(c))
