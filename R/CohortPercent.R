@@ -22,7 +22,7 @@ CohortPercent <- function(df, c, var, cols, cols2){
     theme_few() +
     theme(legend.position = "bottom") +
     geom_text(data = x %>% filter(ChurnAlvo != "Não"), aes(y= Percentual, x=MesCriacao, label= Percentual)) +
-    labs(title = paste(c, collapse = "e"))
+    labs(title = paste(c, collapse = " e "))
 }
 
 
